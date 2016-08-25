@@ -1,5 +1,30 @@
+@import 'normalize'
+
 *
   box-sizing: border-box
 
 body
-  background: pink
+  background: #FB3C4E
+  font-family: 'Roboto Condensed', sans-serif
+  color: white
+
+h1
+  border-bottom: 1px solid
+  margin: 0
+  //padding: .5em
+  display: flex
+  justify-content: center
+  align-items: center
+  letter-spacing: .03em
+  height: 10vh
+  text-transform: uppercase
+
+
+@media (min-width: 768px)
+  .app
+    padding-top: 8vh
+
+
+
+@import 'timer'
+@import 'control'

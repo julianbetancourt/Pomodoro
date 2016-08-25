@@ -1,0 +1,39 @@
+.control
+  height: 20vh
+  border-bottom: 1px solid
+  display: flex
+  &__number, i
+    width: 33.33%
+  &__number
+    //border-right: 1px solid
+    //border-left: 1px solid
+    text-align: center
+    display: flex
+    justify-content: center
+    flex-direction: column
+    h3
+      margin: 0
+      letter-spacing: .1em
+      font-weight: 400
+    & > span
+      font-size: 4em
+  i
+    align-self: center
+    text-align: center
+    font-size: 1.5em
+    padding-top: .6em
+    cursor: pointer
+
+@media (min-width: 768px)
+  .controls
+    display: flex
+    width: 25em
+    margin: 0 auto
+    justify-content: space-between
+    margin-top: 3em
+  .control
+    height: auto
+    border-bottom: none
+    width: 50%
+    &:nth-child(1)
+      order: 2
