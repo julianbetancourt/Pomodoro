@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { msToMm } from '../utils/format';
 import { setLength } from '../actions';
+import SessionControl from '../components/SessionControl';
 
 class Settings extends Component {
   constructor(props) {
@@ -34,22 +35,20 @@ class Settings extends Component {
     const { workLength, breakLength, activityType } = this.props;
     return (
       <section className="controls">
-        <div className="control">
-          <i className="ion-minus minus-work" onClick={this.subtract}></i>
-          <div className="control__number">
-            <h3>Working</h3>
-            <span>{msToMm(workLength)}</span>
-          </div>
-          <i className="ion-plus plus-work" onClick={this.add}></i>
-        </div>
-        <div className="control">
-          <i className="ion-minus minus-break" onClick={this.subtract}></i>
-          <div className="control__number">
-            <h3>Break</h3>
-            <span>{msToMm(breakLength)}</span>
-          </div>
-          <i className="ion-plus plus-break" onClick={this.add}></i>
-        </div>
+        <SessionControl
+          minusClass='ion-minus minus-work'
+          plusClass='ion-plus plus-work'
+          subtract={this.subtract}
+          add={this.add}
+          title='Work'
+          length={msToMm(workLength)} />
+        <SessionControl
+          minusClass='ion-minus minus-break'
+          plusClass='ion-plus plus-break'
+          subtract={this.subtract}
+          add={this.add}
+          title="Break"
+          length={msToMm(breakLength)} />
       </section>
     );
   }

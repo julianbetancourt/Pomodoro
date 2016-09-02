@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { startTimer, tick, pauseTimer, stopTimer, changeActivityType } from '../actions';
 import { msToMmSs } from '../utils/format';
+import StopWatch from '../components/StopWatch';
+import LoadBar from '../components/LoadBar';
+import TimerControls from '../components/TimerControls';
 
 class Timer extends Component {
   constructor(props) {
@@ -25,8 +28,6 @@ class Timer extends Component {
       if (this.props.time <= 0) {
         if (this.props.activityType === 'work') {
           this.props.changeActivityType('break');
-          //clearInterval(this.interval);
-          //this.start();
         } else {
           this.props.changeActivityType('work');
         }
@@ -56,17 +57,9 @@ class Timer extends Component {
     const { isOn, time, activityType } = this.props;
     return (
       <div className="timer">
-        <div className="timer__clock">
-          <h2>{activityType === 'work' ? 'Working' : 'On Break'}</h2>
-          <span>{msToMmSs(time)}</span>
-        </div>
-        <div className="load-bar">
-          <div className="load-bar__bar" style={{"width": this.calculatePercentage()}}></div>
-          </div>
-        <div className="timer__control">
-          <i className="ion-stop" onClick={this.stop}></i>
-          <i className={isOn ? 'ion-pause' : 'ion-play'} onClick={isOn ? this.pause : this.start}></i>
-        </div>
+        <StopWatch activityType={activityType} time={msToMmSs(time)} />
+        <LoadBar percent={this.calculatePercentage()} />
+        <TimerControls stop={this.stop} isOn={isOn} pause={this.pause} start={this.start} />
       </div>
     );
   }
