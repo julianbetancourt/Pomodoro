@@ -25,3 +25,11 @@ export const tick = (time) => {
     time
   }
 }
+
+export const setLength = (timerType, length) => {
+  return {
+    type: types.SET_LENGTH,
+    timerType,
+    length
+  }
+}

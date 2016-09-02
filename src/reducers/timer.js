@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 import initialState from './initialState';
 
-const timer = (state = initialState.timer, action) => {
+const timer = (state = initialState, action) => {
   switch (action.type) {
     case types.START_TIMER:
       return {
@@ -11,11 +11,13 @@ const timer = (state = initialState.timer, action) => {
       };
     case types.STOP_TIMER:
       return {
+        ...state,
         isOn: false,
-        time: 1500000
+        time: state.workLength
       };
     case types.PAUSE_TIMER:
       return {
+        ...state,
         isOn: false,
         time: state.time
       }
@@ -24,6 +26,14 @@ const timer = (state = initialState.timer, action) => {
         ...state,
         time: state.time - (action.time - state.offset),
         offset: action.time
+      }
+    case types.SET_LENGTH:
+      const isWork = action.timerType === 'work' ? true : false;
+      return {
+        ...state,
+        workLength: isWork ? action.length : state.workLength,
+        time: isWork ? action.length : state.time,
+        breakLength: !isWork ? action.length : state.breakLength
       }
     default:
       return state;
