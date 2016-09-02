@@ -32,7 +32,7 @@ class Settings extends Component {
     }
   }
   render() {
-    const { workLength, breakLength, activityType } = this.props;
+    const { workLength, breakLength } = this.props;
     return (
       <section className="controls">
         <SessionControl
