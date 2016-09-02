@@ -4,9 +4,21 @@
   box-sizing: border-box
 
 body
-  background: #FB3C4E
   font-family: 'Roboto Condensed', sans-serif
   color: white
+  user-select: none
+
+.container
+  height: 100%
+
+.container.stopped
+  background: #2283f6
+
+.container.working
+  background: #02cda0
+
+.container.onBreak
+  background: #fb3c4e
 
 h1
   border-bottom: 1px solid
@@ -23,6 +35,8 @@ h1
 @media (min-width: 768px)
   .app
     padding-top: 8vh
+  .container
+    height: 100vh 
 
 
 

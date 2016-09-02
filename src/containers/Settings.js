@@ -11,18 +11,22 @@ class Settings extends Component {
     this.minute = 60000;
   }
   add(e) {
-    const isWork = e.target.className === 'ion-plus plus-work' ? true : false;
-    if ( isWork && this.props.workLength < this.minute * 59) {
+    const isButtonWork = e.target.className === 'ion-plus plus-work' ? true : false;
+    const isActivityWork = this.props.activityType === 'work' ? true : false;
+
+    if ( isButtonWork && this.props.workLength < this.minute * 59 && !this.props.isOn && isActivityWork) {
       this.props.setLength('work', this.props.workLength + this.minute)
-    } else if (!isWork && this.props.breakLength < this.minute * 20) {
+    } else if (!isButtonWork && this.props.breakLength < this.minute * 20 && !this.props.isOn) {
       this.props.setLength('break', this.props.breakLength + this.minute)
     }
   }
   subtract(e) {
-    const isWork = e.target.className === 'ion-minus minus-work' ? true : false;
-    if ( isWork && this.props.workLength > this.minute) {
+    const isButtonWork = e.target.className === 'ion-minus minus-work' ? true : false;
+    const isActivityWork = this.props.activityType === 'work' ? true : false;
+
+    if ( isButtonWork && this.props.workLength > this.minute && !this.props.isOn && isActivityWork) {
       this.props.setLength('work', this.props.workLength - this.minute)
-    } else if (!isWork && this.props.breakLength > this.minute) {
+    } else if (!isButtonWork && this.props.breakLength > this.minute && !this.props.isOn) {
       this.props.setLength('break', this.props.breakLength - this.minute)
     }
   }
@@ -33,7 +37,7 @@ class Settings extends Component {
         <div className="control">
           <i className="ion-minus minus-work" onClick={this.subtract}></i>
           <div className="control__number">
-            <h3>{activityType === 'work' ? 'Working' : 'On Break'}</h3>
+            <h3>Working</h3>
             <span>{msToMm(workLength)}</span>
           </div>
           <i className="ion-plus plus-work" onClick={this.add}></i>
@@ -55,7 +59,8 @@ const mapStateToProps = (state) => {
   return {
     workLength: state.timer.workLength,
     breakLength: state.timer.breakLength,
-    activityType: state.timer.activityType
+    activityType: state.timer.activityType,
+    isOn: state.timer.isOn
   }
 }
 

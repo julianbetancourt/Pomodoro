@@ -4,3 +4,4 @@ export const STOP_TIMER = 'STOP_TIMER';
 export const TICK = 'TICK';
 
 export const SET_LENGTH = 'SET_LENGTH';
+export const CHANGE_ACTIVITY_TYPE = 'CHANGE_ACTIVITY_TYPE';

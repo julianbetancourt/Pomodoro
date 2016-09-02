@@ -35,6 +35,12 @@ const timer = (state = initialState, action) => {
         time: isWork ? action.length : state.time,
         breakLength: !isWork ? action.length : state.breakLength
       }
+    case types.CHANGE_ACTIVITY_TYPE:
+      return {
+        ...state,
+        activityType: action.activityType,
+        time: action.activityType === 'work' ? state.workLength : state.breakLength
+      }
     default:
       return state;
   }

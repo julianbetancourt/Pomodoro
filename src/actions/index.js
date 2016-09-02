@@ -1,9 +1,10 @@
 import * as types from './actionTypes';
 
-export const startTimer = (offset) => {
+export const startTimer = (offset, time) => {
   return {
     type: types.START_TIMER,
-    offset
+    offset,
+    time
   }
 }
 
@@ -31,5 +32,12 @@ export const setLength = (timerType, length) => {
     type: types.SET_LENGTH,
     timerType,
     length
+  }
+}
+
+export const changeActivityType = (activityType) => {
+  return {
+    type: types.CHANGE_ACTIVITY_TYPE,
+    activityType
   }
 }
