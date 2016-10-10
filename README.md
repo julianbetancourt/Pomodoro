@@ -1,8 +1,6 @@
 #Pomodoro App
 Simple [http://pomodorotechnique.com/](Pomodoro App)
 
-It will also let you search cities to get the mentioned data.
-
 ## Online
 You can see the project live in http://pomodoro-technique.herokuapp.com/
 
